@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The £600 Challenge</title>
+<style>
+  :root {
+    --bg: #f6f7f9;
+    --card: #ffffff;
+    --text: #1d2430;
+    --muted: #667085;
+    --accent: #1f9d63;
+    --track: #e4e7ec;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12161c;
+      --card: #1b212a;
+      --text: #eef1f5;
+      --muted: #98a2b3;
+      --accent: #34c789;
+      --track: #2a323d;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+  }
+  main { max-width: 640px; margin: 0 auto; padding: 24px 16px 48px; }
+  h1 { font-size: 1.8rem; margin: 0 0 4px; }
+  .sub { color: var(--muted); margin: 0 0 24px; }
+  .card {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.08);
+  }
+  h2 { font-size: 1.1rem; margin: 0 0 12px; }
+  .amount { font-size: 2.4rem; font-weight: 700; }
+  .amount span { font-size: 1.1rem; color: var(--muted); font-weight: 400; }
+  .bar { background: var(--track); border-radius: 999px; height: 18px; overflow: hidden; margin: 12px 0 6px; }
+  .fill { background: var(--accent); height: 100%; width: 0; border-radius: 999px; transition: width .8s ease; }
+  .meta { display: flex; justify-content: space-between; color: var(--muted); font-size: .9rem; }
+  ul { margin: 0; padding-left: 20px; }
+  li { margin-bottom: 6px; }
+  .update { border-left: 3px solid var(--accent); padding-left: 12px; margin-bottom: 14px; }
+  .update .date { color: var(--muted); font-size: .85rem; }
+  .update p { margin: 2px 0 0; }
+  footer { text-align: center; color: var(--muted); font-size: .85rem; margin-top: 24px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>The £600 Challenge</h1>
+  <p class="sub">Starting at £0 and building to £600, one parcel and one sale at a time.</p>
+
+  <section class="card">
+    <h2>Progress</h2>
+    <div class="amount"><span id="current">£0</span> <span>of £600</span></div>
+    <div class="bar"><div class="fill" id="fill"></div></div>
+    <div class="meta">
+      <span id="percent">0%</span>
+      <span id="left">£600 to go</span>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>How I'm earning it</h2>
+    <ul>
+      <li>Amazon Flex</li>
+      <li>Evri</li>
+      <li>Uber Eats</li>
+      <li>Vinted</li>
+      <li>Selling books</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>The Parcel Pot</h2>
+    <p style="margin:0">Everything earned goes straight into the Parcel Pot savings account, so it stays saved and not spent.</p>
+  </section>
+
+  <section class="card">
+    <h2>Updates</h2>
+
+    <div class="update">
+      <div class="date">2 November 2026</div>
+      <p>Challenge started. Currently on 4 days on, 4 days off. Let's go.</p>
+    </div>
+
+    <!-- To add an update, copy the whole <div class="update"> block above,
+         paste it ABOVE it, and change the date and text. -->
+  </section>
+
+  <footer>Updated whenever I earn something new.</footer>
+</main>
+
+<script>
+  // ====== EDIT THIS NUMBER AFTER EACH UPDATE ======
+  var earned = 0;
+  // ================================================
+
+  var goal = 600;
+  var pct = Math.min(100, Math.round((earned / goal) * 100));
+  var left = Math.max(0, goal - earned);
+
+  document.getElementById("current").textContent = "£" + earned;
+  document.getElementById("percent").textContent = pct + "%";
+  document.getElementById("left").textContent = left > 0 ? "£" + left + " to go" : "Goal reached!";
+  setTimeout(function () {
+    document.getElementById("fill").style.width = pct + "%";
+  }, 100);
+</script>
+</body>
+</html>
